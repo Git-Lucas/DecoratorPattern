@@ -1,20 +1,16 @@
+using DecoratorPattern;
 using DecoratorPattern.Entities;
 using DecoratorPattern.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services
-    .AddKeyedScoped<IWeatherForecastService, WeatherForecastService>(nameof(WeatherForecastService))
-    .AddScoped<IWeatherForecastService, ResilientWeatherForecastService>();
+builder.Services.AddDecoratedScoped<IWeatherForecastService, ResilientWeatherForecastService, WeatherForecastService>(nameof(WeatherForecastService));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
