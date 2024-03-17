@@ -2,7 +2,9 @@
 
 namespace DecoratorPattern.Services;
 
-public class ResilientWeatherForecastService(IWeatherForecastService weatherForecastService) : IWeatherForecastService
+public class ResilientWeatherForecastService(
+    [FromKeyedServices(nameof(WeatherForecastService))] 
+    IWeatherForecastService weatherForecastService) : IWeatherForecastService
 {
     private readonly IWeatherForecastService _weatherForecastService = weatherForecastService;
 
