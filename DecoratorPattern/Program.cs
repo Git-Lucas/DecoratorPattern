@@ -8,8 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddKeyedScoped<IWeatherForecastService, WeatherForecastService>(nameof(WeatherForecastService));
-builder.Services.AddScoped<IWeatherForecastService, ResilientWeatherForecastService>();
+builder.Services
+    .AddKeyedScoped<IWeatherForecastService, WeatherForecastService>(nameof(WeatherForecastService))
+    .AddScoped<IWeatherForecastService, ResilientWeatherForecastService>();
 
 var app = builder.Build();
 
