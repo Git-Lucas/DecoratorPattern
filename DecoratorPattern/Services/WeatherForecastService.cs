@@ -2,7 +2,7 @@
 
 namespace DecoratorPattern.Services;
 
-public class WeatherForecastService : IWeatherForecastService
+public class WeatherForecastService() : IWeatherForecastService
 {
     public WeatherForecast[] GetWeatherForecasts()
     {
